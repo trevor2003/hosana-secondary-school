@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hosanna Secondary School - Excellence in Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .school-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 2px;
+        }
+
+        .school-title p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Styles */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30,60,114,0.9), rgba(42,82,152,0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f8ff" width="1200" height="600"/><circle fill="%23e6f3ff" cx="200" cy="150" r="80"/><circle fill="%23d9edff" cx="800" cy="400" r="120"/><circle fill="%23cce7ff" cx="1000" cy="200" r="60"/></svg>');
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+        }
+
+        .cta-button:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+        }
+
+        /* Cards and Grids */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #1e3c72;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Mission, Vision, Values */
+        .mvv-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .mvv-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(102,126,234,0.3);
+        }
+
+        .mvv-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+
+        .submit-btn {
+            background: #1e3c72;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #2a5298;
+        }
+
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Contact Info */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #1e3c72;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .page {
+                padding: 20px;
+            }
+
+            .mvv-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .download-link {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">H</div>
+                <div class="school-title">
+                    <h1>Hosanna Secondary School</h1>
+                    <p>Excellence in Education Since 1995</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="academics">Academics</a></li>
+                    <li><a href="#" class="nav-link" data-page="admissions">Admissions</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Welcome to Hosanna Secondary School</h1>
+                <p>Nurturing Excellence, Building Tomorrow's Leaders</p>
+                <a href="#" class="cta-button" onclick="showPage('admissions')">Apply Now</a>
+            </div>
+
+            <div class="mvv-section">
+                <div class="mvv-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide quality education that nurtures academic excellence, moral values, and leadership skills in our students, preparing them for success in higher education and life.</p>
+                </div>
+                <div class="mvv-card">
+                    <h3>Our Vision</h3>
+                    <p>To be a leading secondary school recognized for academic excellence, character development, and innovative teaching that transforms students into responsible global citizens.</p>
+                </div>
+                <div class="mvv-card">
+                    <h3>Our Values</h3>
+                    <p>Integrity, Excellence, Respect, Innovation, and Community Service guide everything we do at Hosanna Secondary School.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>School Motto: "Strive for Excellence"</h3>
+                <p>At Hosanna Secondary School, we believe every student has the potential to achieve greatness. Our dedicated faculty, modern facilities, and comprehensive curriculum create an environment where students can discover their talents and reach their full potential.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Academic Excellence</h3>
+                    <p>Our rigorous academic programs prepare students for success in national examinations and higher education. We maintain high standards while supporting each student's individual learning journey.</p>
+                </div>
+                <div class="card">
+                    <h3>Character Development</h3>
+                    <p>We emphasize moral values, leadership skills, and social responsibility. Our students graduate as well-rounded individuals ready to contribute positively to society.</p>
+                </div>
+                <div class="card">
+                    <h3>Modern Facilities</h3>
+                    <p>Our campus features well-equipped classrooms, science laboratories, computer lab, library, sports facilities, and residential accommodation for boarding students.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACADEMICS PAGE -->
+        <div id="academics" class="page">
+            <h1>Academic Programs</h1>
+            <p>Hosanna Secondary School offers a comprehensive curriculum designed to prepare students for success in their chosen fields.</p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Science Department</h3>
+                    <p><strong>Subjects:</strong> Physics, Chemistry, Biology, Mathematics<br>
+                    <strong>Facilities:</strong> Fully equipped laboratories for practical work<br>
+                    <strong>Career Paths:</strong> Medicine, Engineering, Research, Technology</p>
+                </div>
+                <div class="card">
+                    <h3>Arts Department</h3>
+                    <p><strong>Subjects:</strong> Literature, History, Geography, Religious Studies<br>
+                    <strong>Activities:</strong> Debate club, Drama society, Cultural events<br>
+                    <strong>Career Paths:</strong> Law, Journalism, Education, Social Work</p>
+                </div>
+                <div class="card">
+                    <h3>Commercial Department</h3>
+                    <p><strong>Subjects:</strong> Entrepreneurship, Commerce, Accounting, Economics<br>
+                    <strong>Skills:</strong> Business planning, Financial literacy, Marketing<br>
+                    <strong>Career Paths:</strong> Business, Banking, Finance, Management</p>
+                </div>
+            </div>
+
+            <h2>Co-Curricular Activities</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Sports & Games</h3>
+                    <p>Football, Basketball, Volleyball, Athletics, Swimming, Table Tennis. We participate in inter-school competitions and regional tournaments.</p>
+                </div>
+                <div class="card">
+                    <h3>Clubs & Societies</h3>
+                    <p>Science Club, Debate Society, Environmental Club, Music & Drama, Photography Club, Computer Club, Red Cross Society.</p>
+                </div>
+                <div class="card">
+                    <h3>Leadership Programs</h3>
+                    <p>Student Council, Prefectship, Peer Counseling, Community Service Projects, Leadership Workshops and Seminars.</p>
+                </div>
+            </div>
+
+            <h2>Academic Calendar 2025</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Key Events</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Term 1</td>
+                            <td>February 5, 2025</td>
+                            <td>May 9, 2025</td>
+                            <td>Opening Ceremony, Mid-term Exams, Sports Day</td>
+                        </tr>
+                        <tr>
+                            <td>Term 2</td>
+                            <td>June 2, 2025</td>
+                            <td>August 22, 2025</td>
+                            <td>Science Fair, Drama Festival, Mock Exams</td>
+                        </tr>
+                        <tr>
+                            <td>Term 3</td>
+                            <td>September 8, 2025</td>
+                            <td>December 4, 2025</td>
+                            <td>National Exams, Graduation Ceremony</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ADMISSIONS PAGE -->
+        <div id="admissions" class="page">
+            <h1>Admissions Information</h1>
+            <p>Welcome to Hosanna Secondary School! We are excited to help you begin your journey toward academic excellence.</p>
+
+            <div class="highlight">
+                <h3>Admission Requirements</h3>
+                <ul>
+                    <li>Completed Primary Leaving Examination (PLE) certificate</li>
+                    <li>Birth certificate or sworn affidavit</li>
+                    <li>Medical report from a recognized health facility</li>
+                    <li>Two passport-size photographs</li>
+                    <li>Transfer certificate (for students from other schools)</li>
+                </ul>
+            </div>
+
+            <h2>Application Process</h2>
+            <div class="form-container">
+                <form id="applicationForm">
+                    <div class="form-group">
+                        <label for="studentName">Student's Full Name:</label>
+                        <input type="text" id="studentName" name="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth:</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="previousSchool">Previous School:</label>
+                        <input type="text" id="previousSchool" name="previousSchool" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pleResults">PLE Results (Aggregate):</label>
+                        <input type="number" id="pleResults" name="pleResults" min="4" max="36" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentName">Parent/Guardian Name:</label>
+                        <input type="text" id="parentName" name="parentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentPhone">Parent/Guardian Phone:</label>
+                        <input type="tel" id="parentPhone" name="parentPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Home Address:</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="accommodation">Accommodation Type:</label>
+                        <select id="accommodation" name="accommodation" required>
+                            <option value="">Select Option</option>
+                            <option value="boarding">Boarding</option>
+                            <option value="day">Day Scholar</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+
+            <h2>School Fees Structure (2025)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Day Scholar (UGX)</th>
+                            <th>Boarding (UGX)</th>
+                            <th>Additional Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>S1 - S2</td>
+                            <td>450,000</td>
+                            <td>850,000</td>
+                            <td>Uniform, Books, Activities</td>
+                        </tr>
+                        <tr>
+                            <td>S3 - S4</td>
+                            <td>520,000</td>
+                            <td>920,000</td>
+                            <td>Uniform, Books, Activities</td>
+                        </tr>
+                        <tr>
+                            <td>S5 - S6</td>
+                            <td>680,000</td>
+                            <td>1,080,000</td>
+                            <td>Uniform, Books, Activities</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight">
+                <h3>Payment Information</h3>
+                <p><strong>Payment Methods:</strong> Bank Transfer, Mobile Money, Cash (at school bursar's office)</p>
+                <p><strong>Bank Details:</strong> Hosanna Secondary School<br>
+                Account No: 1234567890<br>
+                Bank: Stanbic Bank Uganda<br>
+                Branch: Kampala Road</p>
+                <p><strong>Mobile Money:</strong> Send to 0772-123-456 (School Bursar)</p>
+            </div>
+
+            <h2>Enrollment Procedures</h2>
+            <ol>
+                <li><strong>Submit Application:</strong> Complete and submit the application form with required documents</li>
+                <li><strong>Document Verification:</strong> School reviews documents and academic records</li>
+                <li><strong>Interview:</strong> Student and parent interview with admissions committee</li>
+                <li><strong>Acceptance:</strong> Successful candidates receive admission letter</li>
+                <li><strong>Fee Payment:</strong> Pay required fees to secure placement</li>
+                <li><strong>Orientation:</strong> Attend orientation session before term begins</li>
+            </ol>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page">
+            <h1>Contact Us</h1>
+            <p>Get in touch with Hosanna Secondary School for inquiries, visits, or more information about our programs.</p>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h3>Email</h3>
+                        <p>info@hosannasecondary.ac.ug<br>admissions@hosannasecondary.ac.ug</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h3>Phone Numbers</h3>
+                        <p>Main Office: +256-772-123-456<br>Admissions: +256-704-987-654</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Plot 45, Education Road<br>Nakawa Division, Kampala<br>Uganda</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <div>
+                        <h3>Office Hours</h3>
+                        <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Send us a Message</h2>
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Your Name:</label>
+                        <input type="text" id="contactName" name="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address:</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Phone Number:</label>
+                        <input type="tel" id="contactPhone" name="contactPhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">Subject:</label>
+                        <select id="contactSubject" name="contactSubject" required>
+                            <option value="">Select Subject</option>
+                            <option value="admissions">Admissions Inquiry</option>
+                            <option value="academics">Academic Information</option>
+                            <option value="fees">Fee Structure</option>
+                            <option value="facilities">School Facilities</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message:</label>
+                        <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+            <div class="highlight">
+                <h3>School Location & Directions</h3>
+                <p>Hosanna Secondary School is conveniently located in Nakawa Division, Kampala. We are easily accessible by public transport and private vehicles.</p>
+                <p><strong>Landmarks:</strong> Near Nakawa Market, opposite St. Augustine Chapel, 2km from Kampala-Jinja Highway</p>
+                <p><strong>Public Transport:</strong> Take taxi/bus to Nakawa and ask for Hosanna Secondary School</p>
+            </div>
+
+            <h2>Download School Information</h2>
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="#" class="download-link" onclick="downloadProspectus()">📄 Download School Prospectus (PDF)</a>
+                <a href="#" class="download-link" onclick="downloadApplication()">📋 Download Application Form (PDF)</a>
+            </div>
+
+            <div class="highlight">
+                <h3>Visit Our School</h3>
+                <p>We welcome prospective students and parents to visit our campus. Please contact us to schedule a guided tour and meet with our admissions team.</p>
+                <p><strong>Tour Times:</strong> Monday to Friday at 10:00 AM and 2:00 PM<br>
+                <strong>Saturday:</strong> 10:00 AM only</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('academics')">Academics</a>
+                <a href="#" onclick="showPage('admissions')">Admissions</a>
+                <a href="#" onclick="showPage('contact')">Contact</a>
+            </div>
+            <p>&copy; 2025 Hosanna Secondary School. All rights reserved.</p>
+            <p>Excellence in Education Since 1995 | Kampala, Uganda</p>
+        </div>
+    </footer>
+
+    
